@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n ;
+    cout << "Number of items: " ;
+    cin >> n ;
+    cout << "Enter Quantity and rate\n" ;
+    vector<int>quantity(n+1) ;
+    vector<int>r(n+1) ;
+    vector<int>a(n+1) ;
+    for(int i = 0 ; i < n ; i++)
+    {
+        cout << "Item " << i+1 << ":" ;
+        cin >> quantity[i] >> r[i] >> a[i];
+    }
+    float ans = 0 ; 
+    int x = 0 , y = 0 ;
+    cout << "Item number Quantity Amount(current currency)\n" ;
+    for(int i = 0 ; i < n ; i++)
+    {
+        x += r[i] ;
+        y += a[i] ;
+        float t = 0 ;
+        t += (quantity[i]*r[i]) ;
+        t += (float)(quantity[i]*a[i])/(float)(16) ;
+        ans += t ;
+        cout << "Item" << i+1 << ":           " << quantity[i] << "          " << fixed << setprecision(2) << t << endl ;
+    }
+    x += y/16 ;
+    y %= 16 ;
+    cout << "Total amount in current currency: Rs" << ans << endl ;
+    cout << "Total amount in current currency: " << x << " rupees, " << y << " annas." << endl ; 
+}
